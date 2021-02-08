@@ -13,11 +13,17 @@ function nowServing (katzDeliLine) {
  return `Currently serving ${firstPersonInLine}.`;
 }
 
-function currentLine (katzDeliLine) {
-var lineCount = katzDeliLine.slice(0, katzDeliLine.length - 1);
-  for (let i = 0; i < lineCount.length; i++){
-    return `The line is currently:${i+1}. ${lineCount}`;}
-  if (lineCount === undefined) {
-    return "The line is currently empty.";
+function currentLine(line) {
+  if (!line.length) {
+    return "The line is currently empty."
   }
-}
+
+  const numbersAndNames = []
+
+  for (let i = 0, l = line.length; i < l; i++) {
+    numbersAndNames.push(`${i + 1}. ${line[i]}`)
+  }
+
+  /* Keep in mind, join() is a a shorthand for looping and building
+   * into a String. */
+  return `The line is currently: ${numbersAndNames.join(', ')}`
